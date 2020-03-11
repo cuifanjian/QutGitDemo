@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>cn.edu.qut</groupId>
-  <artifactId>Chapter2Maven</artifactId>
+  <artifactId>Chapter1Maven</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>Chapter2Maven Maven Webapp</name>
+  <name>Chapter1Maven Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -26,6 +26,7 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
@@ -63,12 +64,27 @@
       <version>2.3.3</version>
       <scope>provided</scope>
     </dependency>
+
   </dependencies>
 
   <build>
-    <finalName>Chapter2Maven</finalName>
+    <finalName>Chapter1Maven</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+            <url>http://localhost:8080/manager/text</url>
+            <server>tomcat9</server>
+            <username>admin</username>
+            <password>1234</password>
+            <update>true</update>
+            <path>/webapp</path>
+          </configuration>
+        </plugin>
+
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
@@ -97,19 +113,6 @@
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.tomcat.maven</groupId>
-          <artifactId>tomcat7-maven-plugin</artifactId>
-          <version>2.2</version>
-          <configuration>
-            <url>http://localhost:8080/manager/text</url>
-            <server>tomcat9</server>
-            <username>admin</username>
-            <password>1234</password>
-            <update>true</update>
-            <path>/webapp</path>
-          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
